@@ -2,7 +2,7 @@
 ## This project is made as a part of the CS F213 : Object Oriented Programming Course.
 
 ## Project Overview:
-The Application allows users to book parking slots (Virtual) and allow them to add workers to their particular slot to avail services such as Air Filling, Car Washes and any of their choice and this data will be maintained on a regular basis in database. The Web App is fully Secured where you have Authentication in order to get things done. Only the Users who've got their Emails verified will be able to register.
+The Application allows users to book parking slots (Virtual) and allow them to add workers to their particular slot to avail services such as Air Filling, Car Washes and any of their choice and this data will be maintained on a regular basis in database. The Web App is fully Secured where you have Authentication in order to get things done. Only the Users who've got their Emails verified through the OTP will be able to register and use the app.
 
 ## Technologies Used:
 1. [HTML, CSS and JS](https://www.javascript.com/) : FrontEnd Interface.
