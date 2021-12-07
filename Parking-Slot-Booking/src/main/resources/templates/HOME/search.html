@@ -1,0 +1,116 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>parkings</title>
+
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+    <link th:href="@{/css/style.css}" href="/static/css/style.css" rel="stylesheet" type="text/css"/>
+	<link rel = "icon" href = "https://img.icons8.com/color/50/000000/parking.png" type="image/x-icon">
+
+    <!--  -->
+<style>
+    .search{
+        margin-top: 50px;
+    }
+</style>
+
+</head>
+
+<body>
+
+<div th:insert="~{/fragments/header :: header}"></div>
+
+<div class="container-table">
+
+    <hr>
+    <hr>
+
+
+    <form class="search" action="#" th:action="@{/searchParkings}" th:object="${search}" method="get">
+<!--        <div align="center">-->
+<!--&lt;!&ndash;        <div class="search-container">&ndash;&gt;-->
+<!--&lt;!&ndash;            <label class="header-title">Find By: </label>&ndash;&gt;-->
+<!--&lt;!&ndash;            <input name="search" id="search" style="height:21px;"/>&ndash;&gt;-->
+<!--&lt;!&ndash;            <select name="criteria" id="criteria" style="height:27px;">&ndash;&gt;-->
+<!--&lt;!&ndash;                <option value="none" id="none">Show all</option>&ndash;&gt;-->
+<!--&lt;!&ndash;                <option value="parkingPrice" id="parkingPrice">Price less than</option>&ndash;&gt;-->
+<!--&lt;!&ndash;                <option value="parkingCity" id="parkingCity">City containing letter(s)</option>&ndash;&gt;-->
+<!--&lt;!&ndash;                <option value="parkingCountry" id="parkingCountry">Country containing letter(s)</option>&ndash;&gt;-->
+
+<!--&lt;!&ndash;            </select>&ndash;&gt;-->
+<!--            <button class="regular-action-button" style="display: initial !important;padding: 3px 12px !important;"-->
+<!--                    type="submit">Search-->
+<!--            </button>-->
+<!--        </div>-->
+<!--        </div>-->
+        <div th:if="${not #lists.isEmpty(search)}">
+
+            <table class="table table-bordered table-striped">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Parking Slot Photo</th>
+                    <th>Parking Slot Name</th>
+                    <th>Recommended car types</th>
+                    <th>Recommended car models</th>
+                    <th>Worker Rating</th>
+                    <th>Added by</th>
+                    <th>Price/hour</th>
+                    <th>Services</th>
+<!--                    <th>Rating</th>-->
+
+
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr th:each="tempParkings : ${search}" style="background-color: white">
+
+                    <td class="w-25" sec:authorize="hasAuthority('ROLE_ADMIN')">
+
+                        <a th:href="@{|/admin/viewParking/${tempParkings.id}|}">
+                            <img src="https://st2.depositphotos.com/7752738/11007/v/600/depositphotos_110075024-stock-illustration-parking-lot-with-sign-vector.jpg" class="img-fluid img-thumbnail1" alt="parking">
+                        </a>
+                    </td>
+                    <td class="w-25" sec:authorize="hasAuthority('ROLE_USER')">
+
+                            <a th:href="@{|/viewParking/${tempParkings.id}|}">
+                                <img src="https://st2.depositphotos.com/7752738/11007/v/600/depositphotos_110075024-stock-illustration-parking-lot-with-sign-vector.jpg" class="img-fluid img-thumbnail1" alt="parking">
+                            </a>
+                    </td>
+                    <td th:text="${tempParkings.parkingName}"/>
+                    <td th:text="${tempParkings.countrey}"/>
+                    <td th:text="${tempParkings.city}"/>
+                    <td th:text="${tempParkings.adress}"/>
+                    <td th:text="${tempParkings.user.userName}"/>
+                    <td th:text="${tempParkings.ppn}+' $'"/>
+                    <td th:text="${tempParkings.service}"></td>
+<!--                    <td th:text="${tempParkings.getRatting()>0 ? tempParkings.getRatting()+'/5' : 'No ratting yet'}"  />-->
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </form>
+</div>
+
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+</body>
+<style>
+	body{
+		background-image: url('https://wallpaperaccess.com/full/303003.jpg');
+		background-size: cover;
+	}
+</style>
+</html>

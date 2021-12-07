@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Update parking</title>
+
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+          integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link th:href="@{/css/style.css}" href="/static/css/style.css" rel="stylesheet" type="text/css"/>
+
+	<link rel = "icon" href = "https://img.icons8.com/color/50/000000/parking.png"/>" type = "image/x-icon">
+
+</head>
+
+<body>
+
+<div th:insert="~{/fragments/header :: header}"></div>
+<br><br>
+<div align="center">
+    <h1>Edit Parking Slot</h1>
+    <br/>
+
+
+    <div class="modal-body">
+        <form th:action="@{'/user/edit-parking'}" method="post" th:object="${parking}"
+        style="background-color: black; padding:20px; color:white; background-size:100px 100px">
+            <input type="hidden" id="id" th:field="${parking.parkingID}" name="id">
+
+            <div class="col-md-6" style="margin-bottom: 2%">
+                <div class="md-form mb-0">
+                    <label for="New name" class="">New name</label>
+                    <input th:field="${parking.parkingName}" type="text" id="New name" name="New name"
+                           class="form-control">
+                </div>
+            </div>
+
+            <div class="col-md-6" style="margin-bottom: 2%">
+                <div class="md-form mb-0">
+                    <label for="New price/night" class="">New price/night</label>
+                    <input th:field="${parking.ppn}" type="text" id="New price/night" name="New price/night"
+                           class="form-control">
+                </div>
+            </div>
+
+            <input type="hidden" id="countrey" th:field="${parking.countrey}" name="id">
+            <input type="hidden" id="city" th:field="${parking.city}" name="id">
+            <input type="hidden" id="status" th:field="${parking.status}" name="id">
+            <input type="hidden" id="adress" th:field="${parking.adress}" name="id">
+
+            <div class="text-center">
+                <button type="submit" class="empty-button btn btn-default" style="background-color: white!important">
+                    Update
+                </button>
+
+            </div>
+
+        </form>
+    </div>
+</div>
+
+</div>
+
+</div>
+
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+<style>
+	body{
+		background-image: url('https://wallpaperaccess.com/full/303003.jpg');
+		background-size: cover;
+	}
+</style>
+</html>

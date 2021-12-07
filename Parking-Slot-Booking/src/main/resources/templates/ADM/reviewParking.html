@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Admin decision</title>
+
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link th:href="@{/css/style.css}" href="/static/css/style.css" rel="stylesheet" type="text/css"/>
+
+    <!--  -->
+    <link rel = "icon" href = "https://img.icons8.com/color/50/000000/parking.png"/>" type = "image/x-icon">
+
+</head>
+
+<body>
+
+<div th:insert="~{/fragments/header :: header}"></div>
+<br>
+<br>
+<br>
+<section class="text-left">
+    <div class="container">
+        <h1 >Pending parking slot details</h1>
+    </div>
+</section>
+
+<div class="container-checkParking container-userlist" style="align-items: center;">
+    <div class="box" style="border-collapse:separate; border:solid black 1px;;border-radius: 20px!important">
+        <div class="row" >
+            <div class="col-md-5" th:object="${parking}" method="POST">
+                <table>
+                    <tr>
+                        <td><p th:text="'Parking name: '"/></td>
+                        <td><p th:text="${parking.parkingName}"/></td>
+                    </tr>
+                    <tr>
+                        <td><p th:text="'Recommended car type: '"/></td>
+                        <td><p th:text="${parking.countrey}"/></td>
+                    </tr>
+                    <tr>
+                        <td><p th:text="'Recommended car models: '"/></td>
+                        <td><p th:text="${parking.city}"/></td>
+                    </tr>
+                    <tr>
+                        <td><p th:text="'Rating: '"/></td>
+                        <td><p th:text="${parking.adress}"/></td>
+                    </tr>
+                    <tr>
+                        <td><p th:text="'Price/hour: '"/></td>
+                        <td><p th:text="${parking.ppn}"/></td>
+                    </tr>
+                    <tr>
+                        <td><p th:text="'Owner name: '"/></td>
+                        <td><p th:text="${parking.user.getUserName()}"/></td>
+                    </tr>
+                    <tr>
+                        <td><p th:text="'Service: '"/></td>
+                        <td><p th:text="${parking.service}"/></td>
+                    </tr>
+                </table>
+
+                <form id="statusForm" class="w3-section" method="post" th:action="@{/admin/saveStatus}"
+                      th:object="${parking}">
+                    <input type="hidden" name="parkingId" th:value="${parking.id}">
+                    <input type="hidden" id="parkingStatus" name="parkingStatus" value="">
+                    <button class="w3-button w3-green status-button" data-status="accepted">Accept</button>
+                    <button class="w3-button w3-red status-button" data-status="declined">Decline</button>
+                    <br>
+                    <br>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+<script>
+    $(".status-button").click(function (event) {
+        event.preventDefault();
+        const status = $(this).data("status");
+        $("#parkingStatus").val(status);
+        $("#statusForm").submit();
+    })
+</script>
+</body>
+<style>
+    body{
+        background-image: url('https://wallpaperaccess.com/full/303003.jpg');
+        background-size: cover;
+    }
+</style>
+</html>

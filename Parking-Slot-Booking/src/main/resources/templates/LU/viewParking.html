@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Inspect parking</title>
+
+
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+    <link th:href="@{/css/style.css}" href="/static/css/style.css" rel="stylesheet" type="text/css"/>
+
+
+	<link rel = "icon" href = "https://img.icons8.com/color/50/000000/parking.png"/>" type = "image/x-icon">
+</head>
+
+<body>
+
+<div th:insert="~{/fragments/header :: header}"></div>
+<br>
+<br>
+<section class="text-center">
+    <div>
+        <h1>Parking Slot Details</h1>
+    </div>
+</section>
+
+<div class="container" style="align-items:center">
+    <div class="box" style="border-collapse:separate; border:solid black 1px; border-radius:20px!important">
+    <div class="row">
+        <div class="col-md-5" th:object="${parking}" method="POST">
+            <img src="https://st2.depositphotos.com/7752738/11007/v/600/depositphotos_110075024-stock-illustration-parking-lot-with-sign-vector.jpg" class="img-fluid img-thumbnail" alt="parking">
+            <table>
+                <tr>
+                    <td><p th:text="'Parking space name: '"/></td>
+                    <td><p th:text="${parking.parkingName}"/></td>
+                </tr>
+                <tr>
+                    <td><p th:text="'Hosted by :'"/></td>
+                    <td><p th:text="${parking.user.userName}"/></td>
+                </tr>
+                <tr>
+                    <td><p th:text="'Recommended car type: '"/></td>
+                    <td><p th:text="${parking.countrey}"/></td>
+                </tr>
+                <tr>
+                    <td><p th:text="'Recommended car models: '"/></td>
+                    <td><p th:text="${parking.city}"/></td>
+                </tr>
+                <tr>
+                    <td><p th:text="'Rating: '"/></td>
+                    <td><p th:text="${parking.adress}"/></td>
+                </tr>
+                <tr>
+                    <td><p th:text="'Price/hour: '"/></td>
+                    <td><p th:text="${parking.ppn}"/></td>
+                </tr>
+                <tr>
+                    <td><p th:text="'Number of active bookings: '"/></td>
+                    <td><p th:text="${valid.size()}"/></td>
+                </tr>
+            </table>
+<!--            <p th:text="${parking.getRatting()>0 ?parking.getRatting() : 'No ratting yet'}"  />-->
+        </div>
+        </div>
+
+        <table class="table table-bordered table-striped" style="background-color:white">
+            <thead class="thead-dark">
+            <tr>
+                <th>Check in</th>
+                <th>Check out</th>
+                <th>Who made this reservation</th>
+
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="tempBookings : ${valid}">
+
+                <td th:text="${tempBookings.getCheckIn().toString().substring(0,10)}"/>
+                <td th:text="${tempBookings.getCheckOut().toString().substring(0,10)}"/>
+                <td th:text="${tempBookings.getUser().getUserName()}"/>
+
+            </tr>
+            </tbody>
+        </table>
+
+
+
+
+    </div>
+
+
+    
+    <br>
+    <br>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+<style>
+	body{
+		background-image: url('https://wallpaperaccess.com/full/303003.jpg');
+		background-size: cover;
+	}
+</style>
+</html>

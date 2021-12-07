@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Inspect parking</title>
+
+
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+    <link th:href="@{/css/style.css}" href="/static/css/style.css" rel="stylesheet" type="text/css"/>
+	<link rel = "icon" href = "https://img.icons8.com/color/50/000000/parking.png" type="image/x-icon">
+    <!--  -->
+
+
+</head>
+
+<body>
+
+<div th:insert="~{/fragments/header :: header}"></div><br><br>
+
+<section >
+    <div >
+        <h1 style="text-align: center">Parking space Details</h1><br>
+
+    </div>
+</section>
+
+<div class="container" style="align-items:center">
+    <div class="box" style="border-collapse:separate; border:solid black 1px;;border-radius: 20px!important">
+        <div class="row">
+            <div  th:object="${parking}" method="POST">
+                <img src="https://st2.depositphotos.com/7752738/11007/v/600/depositphoto
+s_110075024-stock-illustration-parking-lot-with-sign-vector.jpg" class="img-fluid img-thumbnail" alt="parking">
+                <table>
+                    <tr>
+                        <td><p th:text="'Parking space name: '"/></td>
+                        <td><p th:text="${parking.parkingName}"/></td>
+                    </tr>
+                    <tr>
+                        <td><p th:text="'Hosted by :'"/></td>
+                        <td><p th:text="${parking.user.userName}"/></td>
+                    </tr>
+                    <tr>
+                        <td><p th:text="'Recommended car type: '"/></td>
+                        <td><p th:text="${parking.countrey}"/></td>
+                    </tr>
+                    <tr>
+                        <td><p th:text="'Recommended car details: '"/></td>
+                        <td><p th:text="${parking.city}"/></td>
+                    </tr>
+                    <tr>
+                        <td><p th:text="'Rating: '"/></td>
+                        <td><p th:text="${parking.adress}"/></td>
+                    </tr>
+                    <tr>
+                        <td><p th:text="'Price/hour: '"/></td>
+                        <td><p th:text="${parking.ppn}"/></td>
+                    </tr>
+                </table>
+<!--            <p th:text="'Rating:' +${parking.getRatting()>0 ?parking.getRatting()+'/5' : 'No ratting yet'}"  />-->
+
+            <div sec:authorize="hasAuthority('ROLE_USER')">
+                <a th:href="@{'/user/viewParking/'+${parking.id}+'/calendar'}" class="btn btn-primary btn-lg">Show the booking calendar for this parking</a>
+            </div>
+
+<!--                <div sec:authorize="hasAuthority('ROLE_ADMIN')">-->
+<!--                    <a th:href="@{'/user/viewParking/'+${parking.id}+'/calendar'}" class="btn btn-primary btn-lg">Show the booking calendar for this parking</a>-->
+<!--                </div>-->
+
+            <div sec:authorize="isAnonymous()">
+                <a th:href="@{/stays}" class="btn btn-primary btn-lg">Log in to get the possibility to access our reservation system</a>
+            </div>
+
+            </div>
+        </div>
+
+    </div>
+    <br>
+    <br>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+<style>
+	body{
+		background-image: url('https://wallpaperaccess.com/full/303003.jpg');
+		background-size: cover;
+	}
+</style>
+</html>

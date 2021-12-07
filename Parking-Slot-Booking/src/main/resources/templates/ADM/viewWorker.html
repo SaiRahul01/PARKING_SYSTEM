@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Admin inspect worker</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+    <link th:href="@{/css/style.css}" href="/static/css/style.css" rel="stylesheet" type="text/css"/>
+    <link rel = "icon" href = "https://img.icons8.com/color/50/000000/parking.png"/>" type = "image/x-icon">
+    <!--  -->
+
+
+</head>
+
+<body>
+
+<div th:insert="~{/fragments/header :: header}"></div>
+<br>
+<br>
+<br>
+<section>
+    <div>
+        <h1 align="center">Worker Details</h1>
+    </div>
+</section>
+<div class="container" style="align-items: center;">
+    <div class="box" style="border-collapse:separate; border:solid black 1px;;border-radius: 20px!important">
+        <div class="row" >
+            <div th:object="${user}" method="POST">
+                <table>
+                    <tr>
+                        <td style="font-weight: bolder;"><p th:text="'worker name:  '"/></td>
+                        <td><p th:text="${user.userName}"/></td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bolder;"><p th:text="'email: '"/></td>
+                        <td><p th:text="${user.email}"/></td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bolder;"><p  th:text="'working in: '"></p></td>
+                        <td><p  th:text="${apartNames}"></p></td>
+                    </tr>
+                </table>
+<!--                <a th:href="@{/admin/worker}">Back to Worker List</a>-->
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+<style>
+    body{
+        background-image: url('https://wallpaperaccess.com/full/303003.jpg');
+        background-size: cover;
+    }
+</style>
+</html>
